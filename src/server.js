@@ -15,11 +15,16 @@ const port = 8080;
 
         const shutdown = async () => {
             console.log('Shutting down the server');
-            await Database.disconnect();
-            server.close(() => {
-                console.log('Server closed');
-                process.exit(0);
-            });
+            try {
+                await Database.disconnect();
+                server.close(() => {
+                    console.log('Server closed');
+                    process.exit(0);
+                });
+            } catch (err) {
+                console.error('Error during server shutdown:', err);
+                process.exit(1);
+            }
         };
 
         // Listen for termination signals

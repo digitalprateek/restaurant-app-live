@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
-// mongodb://127.0.0.1:27017/dine&dash
 const MongoDb = process.env.dbUrl;
+if (!MongoDb) {
+    throw new Error('MongoDB connection string is not defined in environment variables');
+}
 class Database {
     static async connect() {
         try {
-            // Ensure the MongoDB connection string is correctly formatted
-            await mongoose.connect(MongoDb, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            });
+// Ensure the MongoDB connection string is correctly formatted
+            await mongoose.connect(MongoDb);
             console.log('MongoDB connected successfully');
         } catch (err) {
             console.error('MongoDB connection error:', err);
