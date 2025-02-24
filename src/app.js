@@ -14,7 +14,7 @@ const cookieParser = require('cookie-parser');
 app.use(express.json());
 app.use(express.urlencoded({extended: true})); //to submit data through form and pass it as json
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['https://dineanddashbyprateek.netlify.app'],
     methods: ['GET', 'POST', 'DELETE','PATCH'],
     credentials: true
 }));
@@ -41,10 +41,10 @@ app.use('/api/v1/users', AuthRoutes);
 app.use('/api/v1/order', OrderRoutes);
 app.use('/api/v1/:restaurantId/foods', FoodRoutes);
 
-app.get('/hello', (req, res) => {
-    console.log(req.query);
-    res.send("Received Hello Request");
-});
+// app.get('/hello', (req, res) => {
+//     console.log(req.query);
+//     res.send("Received Hello Request");
+// });
 
 
 // app.listen(port, ()=>{

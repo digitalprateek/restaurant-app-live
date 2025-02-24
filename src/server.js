@@ -4,12 +4,12 @@ require('dotenv').config();
 const app = require('./app');
 const Database = require('./data-source.js');
 
+// const port = process.env.port || 8080;
 const port = 8080;
 (async () => {
     try {
         await Database.connect();
         console.log('DB Connected Successfully');
-        console.log(process.env.dbUrl);
         const server = app.listen(port, () => {
             console.log(`App is started on port: ${port}`);
         });
