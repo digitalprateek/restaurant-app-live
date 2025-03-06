@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const MongoDb =  'mongodb://127.0.0.1:27017/dine&dash';
-// const MongoDb =  process.env.dbUrl ?? 'mongodb://127.0.0.1:27017/dine&dash';
+const MongoDb =  process.env.dbUrl;
 if (!MongoDb) {
     throw new Error('MongoDB connection string is not defined in environment variables');
 }
