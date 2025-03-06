@@ -143,6 +143,6 @@ router.post('/logout', catchAsync(isLoggedIn), async(req, res)=>{
     res.cookie('AdminToken', '', { httpOnly: true,secure: process.env.NODE_ENV === 'production',
         sameSite: 'none' });
     res.status(200).json({message: "Admin logged out successfully"});
-})
+});
 
 module.exports = router;
