@@ -7,7 +7,7 @@ const Food = require('../models/Food');
 // Add a food listing
 router.post('/', catchAsync(async (req, res) => {
     const { restaurantId } = req.params;
-    console.log('Restaurant ID:', restaurantId);
+    // console.log('Restaurant ID:', restaurantId);
     const restaurant = await Restaurant.findById(restaurantId);
     if (!restaurant) {
         return res.status(404).json({ message: 'Restaurant not found' });
@@ -51,29 +51,24 @@ router.get('/', catchAsync(async (req, res) => {
 // Update a food item
 router.patch('/:foodId', catchAsync(async (req, res) => {
     const { foodId } = req.params;
-    const { name, description, price, available } = req.body;
-
-    const food = await Food.findByIdAndUpdate(foodId, { name, description, price, available }, { new: true });
-    if (!food) {
-        return res.status(404).json({ message: 'Food item not found' });
+    const updates = req.body; // expected to include updated fields including img array
+    const updatedFood = await Food.findByIdAndUpdate(foodId, updates, { new: true });
+    if (!updatedFood) {
+      return res.status(404).json({ message: 'Food item not found' });
     }
-
-    res.status(200).json({ message: 'Food item updated successfully', food });
-}));
+    res.status(200).json({ message: 'Food item updated successfully', food: updatedFood });
+  }));
 
 // Delete a food item
 router.delete('/:foodId', catchAsync(async (req, res) => {
     const { foodId } = req.params;
-
     const food = await Food.findByIdAndDelete(foodId);
     if (!food) {
-        return res.status(404).json({ message: 'Food item not found' });
+      return res.status(404).json({ message: 'Food item not found' });
     }
-
     // Remove the food item from the restaurant's foods array
     await Restaurant.updateOne({ _id: food.restaurant }, { $pull: { foods: foodId } });
-
     res.status(200).json({ message: 'Food item deleted successfully' });
-}));
+  }));
 
 module.exports = router;

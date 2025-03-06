@@ -34,7 +34,10 @@ router.post('/login', catchAsync(async(req, res)=>{
     // console.log(token);
     //setting the cookie
     res.cookie('token', token, {
+        // httpOnly: false, // true when making live
         httpOnly: false,
+        // secure: true, secure true when making live
+        // SameSite: "none",//uncomment when live
         maxAge: 7 * 24 * 60 * 60 * 1000,
         // Credentials: true
     });
@@ -51,14 +54,25 @@ router.get('/profile', catchAsync(isLoggedIn), catchAsync(async (req, res) => {
         username: user.username,
         email: user.email,    
         phone: user.phone,
+        address: user.address,
+        alternativePhone: user.alternativePhone,
         userId: userId
     });
+}));
+
+router.patch('/:userId', catchAsync(isLoggedIn), catchAsync(async(req,res)=>{
+    const {userId} = req.params;
+    // console.log(userId);
+    const {username, email, phone, address, alternativePhone} = req.body;
+    // console.log(alternativePhone, address);
+    await User.findByIdAndUpdate(userId, {username, email, phone, address, alternativePhone});
+    res.status(200).json({message: "Profile has been updated successfully"});
 }));
 
 //logout route
 router.post('/logout', catchAsync(isLoggedIn), async(req, res)=>{
     res.cookie('token', '', { httpOnly: false, maxAge: 1 });
     res.status(200).json({message: "User logged out successfully"});
-})
+});
 
 module.exports = router;

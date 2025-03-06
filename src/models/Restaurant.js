@@ -13,7 +13,9 @@ const restaurantSchema = new mongoose.Schema({
     name: { type: String, index: true, required: true },
     desc: { type: String, required: true },
     rating: { type: Number, min: 0, max: 5 },
-    img: { type: String, required: true },
+    img: { type: Array, required: true },
+    location: {type: String, required: true},
+    password: {type: String, required: true, trim: true},
     foods: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Food' }] //defining foods as an array of objects
     //we also define the objectId of the user who created the restaurant so only that user can update or delete the restaurant
     //author: { type: mongoose.Schema.Types.ObjectId, ref: 'auth', required: true }

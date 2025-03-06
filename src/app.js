@@ -14,7 +14,7 @@ const cookieParser = require('cookie-parser');
 app.use(express.json());
 app.use(express.urlencoded({extended: true})); //to submit data through form and pass it as json
 app.use(cors({
-    origin: ['https://dineanddashbyprateek.netlify.app'],
+    origin: ['http://localhost:5173'],
     methods: ['GET', 'POST', 'DELETE','PATCH'],
     credentials: true
 }));
@@ -22,9 +22,12 @@ app.use(cookieParser());
 
 // import all Routes here
 const RestaurantsRoute = require("./routes/RestaurantsRoutes");
-const AuthRoutes = require('./routes/AuthRoutes')
+const AuthRoutes = require('./routes/AuthRoutes');
 const FoodRoutes = require('./routes/FoodRoutes');
-const OrderRoutes = require('./routes/OrderRoutes')
+const OrderRoutes = require('./routes/OrderRoutes');
+const searchRoutes = require('./routes/SearchRoutes');
+const uploadRoute = require('./routes/UploadRoutes');
+
 
 // there are many methods in app object. We can use them to create routes and handle requests.
 // app.get() - to handle get requests
@@ -40,6 +43,8 @@ app.use('/api/v1/restaurants', RestaurantsRoute); // mount the routes in this ap
 app.use('/api/v1/users', AuthRoutes);
 app.use('/api/v1/order', OrderRoutes);
 app.use('/api/v1/:restaurantId/foods', FoodRoutes);
+app.use('/api/v1/search', searchRoutes);
+app.use('/api/v1/upload', uploadRoute);
 
 // app.get('/hello', (req, res) => {
 //     console.log(req.query);
