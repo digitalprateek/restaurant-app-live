@@ -118,7 +118,9 @@ router.post('/admin-login', catchAsync(async(req, res) => {
   }
   const AdminToken = jwt.sign({restaurantId: restaurant.id}, jwtAdminKey);
   res.cookie('AdminToken', AdminToken, {
-    httpOnly: false, // Use true in production
+    httpOnly: true,
+    secure: true,
+    SameSite: "none",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.status(200).json({ message: "Admin logged in Successfully" });
