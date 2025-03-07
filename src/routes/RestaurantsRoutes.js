@@ -8,7 +8,6 @@ const {UpdateRestaurant} = require('../controllers/RestaurantFunctions')
 const bcrypt = require('bcrypt');
 const { isValidObjectId } = require('mongoose'); // Make sure to import this
 const jwt = require('jsonwebtoken')
-// const {isAdminLoggedIn} = require('../middlewares/AuthMiddlewares');
 const {isAdminLoggedIn} = require('../middlewares/AuthMiddlewares');
 // const isAdminLoggedIn = AuthMiddlewares.isAdminLoggedIn;
 
@@ -139,7 +138,7 @@ router.get('/admin-profile', catchAsync(isAdminLoggedIn), catchAsync(async (req,
   res.status(200).json(restAdmin);
 }));
 
-router.post('/logout', catchAsync(isLoggedIn), async(req, res)=>{
+router.post('/logout', catchAsync(isAdminLoggedIn), async(req, res)=>{
     res.cookie('AdminToken', '', { httpOnly: true,secure: process.env.NODE_ENV === 'production',
         sameSite: 'none' });
     res.status(200).json({message: "Admin logged out successfully"});
