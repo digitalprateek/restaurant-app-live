@@ -33,7 +33,7 @@ router.get("/", catchAsync(async (req, res) => {
   // try {
     // throw new Error('Some error occurred');
      try {
-    const restaurants = await Restaurant.find().select('-password'); // Exclude the password field
+    const restaurants = await Restaurant.find().populate('foods').select('-password'); // Exclude the password field
     res.status(200).json(restaurants);
   } catch (error) {
     res.status(500).json({ message: 'An error occurred', error: error.message });
