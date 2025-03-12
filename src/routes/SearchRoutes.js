@@ -8,7 +8,7 @@ const Food = require('../models/Food'); // Adjust the path as needed
 // GET /api/v1/search?mode=delivery&query=searchTerm
 router.get('/', async (req, res) => {
   const { mode, query } = req.query;
-    console.log(mode, query);
+    // console.log(mode, query);
   if (!mode || !query) {
     return res.status(400).json({ error: 'Both mode and search query (query) are required.' });
   }
