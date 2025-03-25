@@ -21,8 +21,6 @@ const transporter = nodemailer.createTransport({
     minVersion: 'TLSv1.2', // Enforce modern security
     rejectUnauthorized: true
   },
-  logger: process.env.NODE_ENV !== 'production', // Disable logging in production
-  debug: false // Keep false in production
 });
 
 // Critical security validation
