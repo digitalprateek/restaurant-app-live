@@ -17,8 +17,8 @@ const rateLimit = require('express-rate-limit');
 app.use(express.json());
 app.use(express.urlencoded({extended: true})); //to submit data through form and pass it as json
 app.use(cors({
-    // origin: ['https://restaurant.websetgram.com'],
-    origin: ['http://localhost:5173'],
+    origin: ['https://restaurant.websetgram.com'],
+    // origin: ['http://localhost:5173'],
     methods: ['GET', 'POST', 'DELETE','PATCH'],
     credentials: true
 }));
