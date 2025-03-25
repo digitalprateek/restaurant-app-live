@@ -56,7 +56,7 @@ router.post('/', catchAsync(async (req, res) => {
     from: `Website Contact <${process.env.contactEmail}>`,  // Professional "from"
     replyTo: `"${name}" <${email}>`,                       // Allows direct replies to the sender
     to: 'digitalprateek5@gmail.com',
-    subject: `New Message: ${subject.substring(0, 50)}`,   // Prevent overly long subjects
+    subject: `Dine & dash contact: ${subject.substring(0, 50)}`,   // Prevent overly long subjects
     text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
     html: `<div>
       <h3>New Contact Form Submission</h3>
