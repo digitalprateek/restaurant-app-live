@@ -35,9 +35,9 @@ router.post('/login', catchAsync(async(req, res)=>{
     //setting the cookie
     res.cookie('token', token, {
         // httpOnly: false, // true when making live
-        httpOnly: false, //uncomment and httptrue when live 
-        // secure: true, 
-        // SameSite: "none",
+        httpOnly: true, //uncomment and httptrue when live 
+        secure: true, 
+        SameSite: "none",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         // Credentials: true
     });
