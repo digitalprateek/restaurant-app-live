@@ -71,7 +71,12 @@ router.patch('/:userId', catchAsync(isLoggedIn), catchAsync(async(req,res)=>{
 
 //logout route
 router.post('/logout', catchAsync(isLoggedIn), async(req, res)=>{
-    res.cookie('token', '', { httpOnly: true, maxAge: 1 });
+    res.cookie('token', '', { 
+        httpOnly: true,
+        maxAge: 1,
+        secure: true, 
+        sameSite: "none",
+    });
     res.status(200).json({message: "User logged out successfully"});
 });
 
