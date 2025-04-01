@@ -141,8 +141,8 @@ router.get('/admin-profile', catchAsync(isAdminLoggedIn), catchAsync(async (req,
 router.post('/logout', catchAsync(isAdminLoggedIn), async(req, res)=>{
   res.cookie('AdminToken', '',
     { httpOnly: true,
-    // secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none'
+    secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
       maxAge: 1
      });
   res.status(200).json({message: "Admin logged out successfully"});
