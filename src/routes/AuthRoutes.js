@@ -37,7 +37,7 @@ router.post('/login', catchAsync(async(req, res)=>{
         // httpOnly: false, // true when making live
         httpOnly: true, //uncomment and httptrue when live 
         secure: true, 
-        SameSite: "none",
+        sameSite: "none",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         // Credentials: true
     });
