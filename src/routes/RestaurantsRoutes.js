@@ -117,9 +117,9 @@ router.post('/admin-login', catchAsync(async(req, res) => {
   }
   const AdminToken = jwt.sign({restaurantId: restaurant.id}, jwtAdminKey);
   res.cookie('AdminToken', AdminToken, {
-    httpOnly: false, //true when live
-    // secure: process.env.NODE_ENV === 'production',
-    // sameSite: 'none',
+    httpOnly: true, //true when live
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'none',
         maxAge: 7 * 24 * 60 * 60 * 1000,
   });
   res.status(200).json({ message: "Admin logged in Successfully" });
@@ -140,9 +140,9 @@ router.get('/admin-profile', catchAsync(isAdminLoggedIn), catchAsync(async (req,
 
 router.post('/logout', catchAsync(isAdminLoggedIn), async(req, res)=>{
   res.cookie('AdminToken', '',
-    { httpOnly: false,
+    { httpOnly: true,
     // secure: process.env.NODE_ENV === 'production',
-      // sameSite: 'none'
+      sameSite: 'none'
       maxAge: 1
      });
   res.status(200).json({message: "Admin logged out successfully"});
