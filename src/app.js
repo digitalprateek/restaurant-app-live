@@ -70,7 +70,7 @@ app.use('/api/v1/order', OrderRoutes);
 app.use('/api/v1/:restaurantId/foods', FoodRoutes);
 app.use('/api/v1/search', searchRoutes);
 app.use('/api/v1/upload', uploadRoute);
-app.use('/api/v1/contact', ContactRoutes);
+// app.use('/api/v1/contact', ContactRoutes);
 
 // app.get('/hello', (req, res) => {
 //     console.log(req.query);
@@ -91,3 +91,4 @@ app.use((err, req, res, next) => {
 
 module.exports = app; 
 // or export default app this is es6 syntax. Both are same.
+
