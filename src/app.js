@@ -51,7 +51,7 @@ const FoodRoutes = require('./routes/FoodRoutes');
 const OrderRoutes = require('./routes/OrderRoutes');
 const searchRoutes = require('./routes/SearchRoutes');
 const uploadRoute = require('./routes/UploadRoutes');
-const ContactRoutes = require('./routes/ContactRoutes');
+// const ContactRoutes = require('./routes/ContactRoutes');
 
 // there are many methods in app object. We can use them to create routes and handle requests.
 // app.get() - to handle get requests
@@ -91,4 +91,5 @@ app.use((err, req, res, next) => {
 
 module.exports = app; 
 // or export default app this is es6 syntax. Both are same.
+
 
