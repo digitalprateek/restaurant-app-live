@@ -4,7 +4,7 @@ require('dotenv').config();
 const app = require('./app');
 const Database = require('./data-source.js');
 
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 // const port = 8080;
 (async () => {
     try {
@@ -34,3 +34,4 @@ const port = process.env.port || 8080;
         process.exit(1); 
     }
 })();
+
